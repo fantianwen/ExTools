@@ -137,6 +137,11 @@ def saveSGF(str,winner):
     timestamp = now.strftime("v2_08_%Y%m%d%H%M%S")
     with open(timestamp+"W="+winner+".sgf", "w") as file:
         file.write(str)
+    saveWinrate(timestamp,winrates)
+
+def saveWinrate(filename,ar):
+    with open(filename+".log","w") as file:
+        file.write(str(ar))                
 
 RAYGO = ["/home/ikeda-05444/users/fan/GoProjects/Ray/ray", "--playout", "60000","--size","13"]
 LEELAZ_tekake = ["/home/ikeda-05444/users/fan/GoProjects/laalaz13E/build/leelaz13_c_param25_cp_10", "--gtp", "-w", "/home/fan/GoProjects/13x13.txt","-p","1600","--noponder"]
