@@ -187,6 +187,7 @@ while True:
 
     lastBlackMove = black.getLastMove()
     lastwinrate = black.lastwinrate()
+    lastwinrate = lastwinrate.strip("\n")
     winrates.append(lastwinrate)
 
     if "resign" in lastBlackMove:
