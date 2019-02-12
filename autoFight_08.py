@@ -113,6 +113,9 @@ class GTPFacade(object):
     def printSgf(self):
         return self.gtp_subprocess.send("printsgf\n")
 
+    def lastwinrate(self):
+        return self.gtp_subprocess.send1("winrate\n")        
+
     def showboard(self):
         print("========================show board========================")
         self.gtp_subprocess.send("showboard\n")
@@ -165,6 +168,7 @@ black = GTPFacade("black", RAYGO)
 
 firstPass = False
 whiteLastMove = ""
+winrates = []
 
 # handicap
 #black.play(BLACK,'D4')
@@ -177,6 +181,9 @@ while True:
     black.genmove1(BLACK)
 
     lastBlackMove = black.getLastMove()
+    lastwinrate = black.lastwinrate()
+    winrates.append(lastwinrate)
+
     if "resign" in lastBlackMove:
         saveSGF(white.printSgf(), "W")
         break
